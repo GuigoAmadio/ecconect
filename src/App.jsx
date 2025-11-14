@@ -17,7 +17,6 @@ function App() {
             <Route path="/post/:id" element={<PostPage />} />
           </Routes>
         </main>
-        <Footer />
       </div>
     </Router>
   );

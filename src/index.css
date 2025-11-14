@@ -4,3 +4,72 @@ body {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     Oxygen, Ubuntu, Cantarell, sans-serif;
 }
+
+.badge-float {
+  opacity: 0;
+  transform: translate3d(
+      var(--badge-offset-x, 0),
+      var(--badge-offset-y, 0),
+      0
+    )
+    rotate(var(--badge-rotate, 0deg))
+    scale(var(--badge-scale, 1));
+  animation: badge-float-in 0.9s ease-out forwards;
+  animation-delay: var(--badge-delay, 0s);
+}
+
+@keyframes badge-float-in {
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) rotate(var(--badge-rotate, 0deg))
+      scale(var(--badge-scale, 1));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .badge-float {
+    animation: none;
+    opacity: 1;
+    transform: translate3d(0, 0, 0) rotate(var(--badge-rotate, 0deg))
+      scale(var(--badge-scale, 1));
+  }
+  .animate-bounce-slow {
+    animation: none;
+  }
+}
+
+@keyframes bounce-slow {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-bounce-slow {
+  animation: bounce-slow 3s ease-in-out infinite;
+}
+
+@keyframes dropdown-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(-10px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.animate-dropdown {
+  animation: dropdown-fade-in 0.2s ease-out forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-dropdown {
+    animation: none;
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}

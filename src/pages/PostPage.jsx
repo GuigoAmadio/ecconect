@@ -1,5 +1,6 @@
 import { useParams, Link } from "react-router-dom";
 import Post from "../components/Post";
+import PostCard from "../components/PostCard";
 import postsData from "../data/posts.json";
 
 const PostPage = () => {
@@ -47,18 +48,18 @@ const PostPage = () => {
 
         <Post post={post} />
 
-        {/* Navegação para outros posts */}
-        <div className="max-w-4xl mx-auto mt-24 pt-12 border-t-2 border-gray-200">
+        {/* Outros posts relacionados */}
+        <div className="max-w-7xl mx-auto mt-24 pt-12 border-t-2 border-gray-200">
           <h3 className="text-2xl font-bold text-gray-900 mb-8 text-center">
             Continue Lendo
           </h3>
-          <div className="flex justify-center">
-            <Link
-              to="/"
-              className="bg-green-600 text-white px-8 py-4 rounded-full font-semibold hover:bg-green-700 transition hover:scale-105"
-            >
-              Ver Todos os Artigos
-            </Link>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {postsData
+              .filter((p) => p.id !== post.id)
+              .slice(0, 3)
+              .map((otherPost) => (
+                <PostCard key={otherPost.id} post={otherPost} />
+              ))}
           </div>
         </div>
       </div>
